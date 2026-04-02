@@ -4,6 +4,8 @@ A Home Assistant custom integration that automatically syncs live
 [Amber Electric](https://www.amber.com.au/) electricity prices to your 
 [Sigenergy](https://www.sigenergy.com/) battery system via Sigen Cloud.
 
+Don't hate me, but Claude Code had a lot to do with this codebase, it even made the icon...
+
 ## Why?
 
 Amber Electric provides real-time wholesale electricity prices that change 
