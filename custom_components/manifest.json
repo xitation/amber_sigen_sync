@@ -1,0 +1,11 @@
+{
+  "domain": "amber_sigen_sync",
+  "name": "Amber to Sigen Sync",
+  "version": "1.0.0",
+  "config_flow": true,
+  "documentation": "https://github.com/xitation/amber_sigen_sync",
+  "issue_tracker": "https://github.com/xitation/amber_sigen_sync/issues",
+  "requirements": [],
+  "iot_class": "cloud_push",
+  "codeowners": ["@xitation"]
+}

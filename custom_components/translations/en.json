@@ -1,0 +1,18 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Amber to Sigen Sync",
+        "data": {
+          "sigen_user": "Sigen username (email)",
+          "sigen_pass_enc": "Sigen encoded password (from devtools)",
+          "sigen_device_id": "Sigen device ID (13-digit, from devtools)",
+          "station_id": "Sigen station ID (from devtools)",
+          "general_price_sensor": "Amber general price sensor entity ID",
+          "feed_in_price_sensor": "Amber feed-in price sensor entity ID",
+          "plan_name": "Tariff plan name (shown in mySigen)"
+        }
+      }
+    }
+  }
+}

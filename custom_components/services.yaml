@@ -1,0 +1,3 @@
+force_sync:
+  name: Force Sync
+  description: Manually trigger an immediate Amber to Sigen tariff sync.
