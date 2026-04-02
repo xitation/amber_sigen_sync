@@ -20,16 +20,16 @@ additional Amber API calls.
 ## How It Works
 
 1. Listens for confirmed (non-estimate) Amber price updates on your existing 
-   Home Assistant Amber Electric sensors
+   Home Assistant [Amber Express](https://github.com/hass-energy/amber-express) Electric sensors
 2. Reads the current buy and sell prices directly from HA sensor state
-3. Authenticates with Sigen Cloud using your credentials
+3. Authenticates with Sigen Cloud using your credentials (See below for details on how to get those)
 4. POSTs the updated single-rate tariff to Sigen Cloud every time the price 
    changes (approximately every 30 minutes)
 5. Your Sigenergy system immediately sees the updated tariff and can optimise 
    accordingly
 
 No additional Amber API calls are made — the integration reuses price data 
-already fetched by your existing Amber Electric HA integration.
+already fetched by your existing Amber Electric HA integration, to avoid hitting API limits.
 
 ## Prerequisites
 
@@ -69,7 +69,7 @@ Go to **Settings → Devices & Services → Add Integration** and search for
 | Field | Description |
 |---|---|
 | Sigen username | Your mySigen login email address |
-| Sigen encoded password | AES-encoded password captured from browser devtools |
+| Sigen encoded password | AES-encoded password captured from browser devtools MUST be URL Encoded |
 | Sigen device ID | 13-digit `userDeviceId` captured from browser devtools |
 | Station ID | Your Sigen controller's numeric station ID |
 
@@ -92,7 +92,7 @@ These are captured from your browser's developer tools:
 2. Press **F12** to open DevTools → click the **Network** tab
 3. Tick **Preserve log** and set filter to **Fetch/XHR**
 4. Log in with your normal mySigen credentials
-5. Find the POST request to 
+5. Find the POST request to (note in other regions the url will change)
    `api-aus.sigencloud.com/auth/oauth/token`
 6. Click it → go to the **Payload** tab → click **view source**
 7. Copy the `password` value — this is your **Sigen encoded password**
@@ -100,11 +100,11 @@ These are captured from your browser's developer tools:
 
 > **Important:** The encoded password is not your plain text password. It is 
 > an AES-128-CBC encrypted value that the mySigen web portal generates 
-> automatically. Copy it exactly as shown in the network request.
+> automatically. Copy it exactly as shown in the URL encoded network request.
 
 ### Station ID
 
-The easiest way to find your station ID:
+The easiest way to find your station ID (This didn't work for me, may work for you):
 
 - Open the mySigen app → tap the **SigenAI** chat assistant
 - Type: *"Tell me my StationID"*
@@ -170,7 +170,7 @@ use the `force_sync` action.
 ### Authentication failing (HTTP 401)
 
 - Verify your encoded password was copied from the **view source** (raw) 
-  view in DevTools, not the decoded view
+  view in DevTools, it must be URL encoded, not the decoded view
 - Ensure `scope=server` is included — it is handled automatically by the 
   integration
 - Re-capture the encoded password from DevTools as it may have been 
